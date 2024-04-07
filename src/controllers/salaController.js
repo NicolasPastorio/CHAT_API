@@ -34,3 +34,11 @@ exports.enviarMensagem = async (nick, msg, idsala) => {
     let resp = await salaModel.atualizarMensagens(sala);
     return { "msg": "OK", "timestamp": timestamp };
 }
+
+exports.buscarMensagens = async (idsala, timestamp) => {
+    let mensagens = await salaModel.buscarMensagens(idsala, timestamp);
+    return {
+        "timestamp": mensagens[mensagens.length - 1].timestamp,
+        "msgs": mensagens
+    };
+}

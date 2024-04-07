@@ -44,7 +44,7 @@ app.use("/sala/entrar", router.put("/sala/entrar", async(req, res) => {
         let resp = await salaController.entrar(req.headers.iduser, req.query.idsala);
         res.status(200).send(resp);
     }
-}))
+}));
 
 //rota para enviar mensagens
 app.use("/sala/mensagem", router.post("/sala/mensagem", async (req, res) => {
@@ -53,6 +53,15 @@ app.use("/sala/mensagem", router.post("/sala/mensagem", async (req, res) => {
     }
     let resp = await salaController.enviarMensagem(req.headers.nick, req.bocy.msg, req.body.idSala);
     res.status(200).send(resp);
-}))
+}));
+
+//rota para listar mensagens
+app.use("/sala/mensagens/", router.get("/sala/mensagens/", async(req, res) => {
+    if(!token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
+        return false;
+    }
+    let resp = await salaController.buscarMensagens(req.query.idSala, req.query.timestamp);
+    res.status(200).send(resp);
+}));
 
 module.exports = app;
