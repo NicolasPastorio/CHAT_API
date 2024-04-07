@@ -26,4 +26,10 @@ app.use("/salas", router.get("/salas", async (req, res, next) => {
     res.status(200).send(resp);
 }));
 
+//rota para entrar no chat
+app.use("/entrar", router.post("/entrar", async (req, res, next) => {
+    const usuarioController = require("./controllers/usuarioController");
+    let resp = await usuarioController.entrar(req.body.nick);
+    res.status(200).send(resp);    
+}))
 module.exports = app;
