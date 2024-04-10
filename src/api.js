@@ -64,4 +64,24 @@ app.use("/sala/mensagens/", router.get("/sala/mensagens/", async(req, res) => {
     res.status(200).send(resp);
 }));
 
+//rota para sair da sala
+app.use('/sala/sair', router.put('/sala/sair', async (req, res) => {
+    if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
+        return false;
+    console.log(req.headers);
+    let resp = await salaController.sairSala(req.headers.iduser, req.query.idsala);
+    res.status(200).send(resp);
+}));
+
+//rota para sair do chat
+app.use('/sair', router.put('/sair', async (req, res) => {
+    if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
+        return false;
+
+    const usuarioController = require('./controllers/usuarioController');
+    let resp = await usuarioController.sairChat(req.headers.iduser);
+
+    res.status(200).send(resp);
+}));
+
 module.exports = app;

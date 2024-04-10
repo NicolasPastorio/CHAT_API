@@ -13,4 +13,8 @@ let alterarUsuario = async (user) => {
     return await db.updateOne("usuarios", user, {_id: user._id});
 }
 
+let excluirUsuario = async (idUser)=>{  
+    return await db.deleteOne('usuarios',idUser);   
+}
+
 module.exports = { registrarUsuario, buscarUsuario, alterarUsuario }
