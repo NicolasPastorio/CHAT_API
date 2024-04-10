@@ -1,4 +1,10 @@
+//senha db atlas
+//IP address (45.227.142.134)
+//mongodb+srv://ChatUser:<password>@clusterapi.muiuigt.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAPI
+//base de dados ChatUser
+//senha: chat&&
 const { MongoClient, ObjectId } = require("mongodb");
+//const uri = "mongodb+srv://ChatUser:chat&&@clusterapi.muiuigt.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAPI";
 
 let singleton;
 
